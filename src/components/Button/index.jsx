@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const Buttons = ({ text, onClick, disabled, ...rest }) => {
     return (
       <button  onClick={onClick} disabled={disabled} {...rest}>
-        {text}
+        
       </button>
     );
   };

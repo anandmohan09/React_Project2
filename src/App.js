@@ -2,26 +2,35 @@ import React from 'react';
 import {useState} from 'react';
 import {DeleteOutlined ,PlusCircleOutlined} from '@ant-design/icons';
 import './App.css';
-// import Data from './components/card/Data';
 import Appointment from './components/pages/Appointment';
-import Button from './components/card/Button';
+import Button from './components/Button';
+
 
 function App() {
 const[inputData,setInputData]=useState({
- file:'', name:"",age:"",phone:"",contact:"",time:"",date:""});
+ file:'', name:"",age:"",gender:'',phone:"",contact:"",time:"",date:""});
  const[record,setRecord]=useState([]);
  console.log(record);
  const handleChange=(e)=>{
   const{name,value}=e.target;
   const image = name === "pic" && e.target.files[0];
-  setInputData({...inputData,[name]:name === "pic" ? window.URL.createObjectURL(image):value});
-  // console.log(inputData);
+  setInputData(()=>{return{
+
+    ...inputData,[name]:name === "pic" ? window.URL.createObjectURL(image):value
+  }});
+  console.log(inputData);
 
  }
 
  function submit(event){
   event.preventDefault();
   setRecord([...record,inputData]);
+  setInputData(
+    {file:'', name:"",age:"",phone:"",contact:"",time:"",date:""}
+  );
+  document.getElementById("exampleModal").classList.remove("show", "d-block");
+  // document.getElementById("exampleModal").classList.remove("show", "d-block", "modal-open");  
+
 
  }
  function dataDelete(id){
@@ -35,15 +44,12 @@ const[inputData,setInputData]=useState({
   return (
     <>
     <div className='container' style={{marginTop:90}}>
-    {/* <div className="App"> */}
     <div className='heading' >
       <h1 style={{textAlign:'center',marginBottom:40,position:'relative'}}>Appointmet Card UI 
 <button type="button" className="btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{color:'blue',marginLeft:15,backgroundColor:'white',height:60,width:60,textAlign:'center',border:0,borderRadius:0}}>
 <PlusCircleOutlined style={{top:20,fontSize:40 }}  />
 </button>
-
-{/* <!-- Modal --> */}
-<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div  className="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
@@ -53,23 +59,23 @@ const[inputData,setInputData]=useState({
       <div className="modal-body" style={{fontSize:20,textAlign:'start'}}>
         <form onSubmit={submit}>
         <label htmlFor='file'>File:</label>
-        <input type='file' name='pic' onChange={handleChange} required></input><br/><br/>
+        <input type='file' name='pic'  onChange={handleChange} required></input><br/><br/>
           <label htmlFor='name'>Name:</label>
-          <input type='text' name='name' onChange={handleChange} placeholder='name' required></input><br/><br/>
+          <input type='text' name='name' value={inputData.name} onChange={handleChange} placeholder='name' required></input><br/><br/>
           <label htmlFor='age'>Age:</label>
-          <input type='text' placeholder='age' name='age' onChange={handleChange} required></input><br/><br/>
+          <input type='text' placeholder='age' name='age' value={inputData.age} onChange={handleChange} required></input><br/><br/>
           <label htmlFor='gender'>Gender:</label>
           <label htmlFor='male' >Male</label>
-          <input type='radio' value='male' name='gender' onChange={handleChange} ></input>
+          <input type='radio' value='male' name='gender'  onChange={handleChange} ></input>
           <label htmlFor='female'>Female</label>
           <input type='radio' value='female' name='gender' onChange={handleChange} ></input><br/><br/>
           <label htmlFor='phone'>Phone:</label>
-          <input type='phone' placeholder='+9' name='phone' onChange={handleChange}  pattern="[9][0-9]{9}" minLength={10} maxLength={10}  required></input><br/><br/>
+          <input type='phone' placeholder='+9' name='phone' value={inputData.phone} onChange={handleChange}  pattern="[9][0-9]{9}" minLength={10} maxLength={10}  required></input><br/><br/>
           <label htmlFor='time'>Time:</label>
-          <input type='time' name='time' onChange={handleChange} required></input><br/><br/>
+          <input type='time' name='time' value={inputData.time} onChange={handleChange} required></input><br/><br/>
           <label htmlFor='date'>Date:</label>
-          <input type='date' name='date' onChange={handleChange} required></input><br/><br/>
-          <Button text='Add Data' type='submit' style={{backgroundColor:'blue',color:'white',margin:'auto', borderRadius:10}}/>
+          <input type='date' name='date' value={inputData.date} onChange={handleChange} required></input><br/><br/>
+          <Button text='Add Data' type='submit' style={{backgroundColor:'blue',color:'white',margin:'auto', borderRadius:10}}>Add Data</Button>
         </form>
       </div>
       <div className="modal-footer">

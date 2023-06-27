@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import React from 'react';
-import Data from '../card/Data';
-import { DeleteOutlined } from '@ant-design/icons';
-
-
+import Data from '../Data';
+import Cards from '../Card';
 function Appointment(){
     const[profile,setProfile]=useState(Data);
 
@@ -21,23 +19,18 @@ function Appointment(){
         profile.map((curElement,index)=>{
           return(
             <>
-            <div className="col">
-    <div className="card" style={{height:200,width:400}}>
-      <div className='image' style={{position:'relative'}}>
-      <img src={curElement.imgsrc} className="card-img-top" alt="" style={{width:60,height:60,borderRadius:'50%',position:'absolute',top:10,left:10}}/>
-      <h4 style={{position:'absolute',top:10,left:80}}>{curElement.name}</h4>
-      <p style={{position:'absolute',top:40,left:80}}>{curElement.age}</p>
-       <button onClick={()=>{deleteCard(index)}} style={{position:'absolute',top:20,right:10,color:'blue',fontWeight:'bold',fontSize:30,border:0,backgroundColor:'white'}}><DeleteOutlined style={{color:'red'}} /></button>
-
-      </div>
-      <div className="card-body" style={{marginTop:90,position:'relative'}}>
-      <span>{curElement.phone}</span>
-        <h6 className="card_title" style={{color:'blue'}}>{curElement.contact}</h6>
-      <span>{curElement.time}<span style={{marginLeft:10}}>{curElement.date}</span></span>
-      <span style={{position:'absolute',bottom:20,right:10,fontWeight:'bold',color:'#00FA9A'}}>Consult</span>
-      </div>
-    </div>
-  </div>
+          <Cards
+          imgSrc={curElement.imgsrc}
+          name={curElement.name}
+          age={curElement.age}
+          phone={curElement.phone}
+          contact={curElement.contact}
+          time={curElement.time}
+          date={curElement.date}
+          title='consult'
+          onClick={ deleteCard}
+          
+          />
             </>
           )
 
