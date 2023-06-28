@@ -2,10 +2,11 @@ import React from 'react';
 import {DeleteOutlined} from '@ant-design/icons';
 import Buttons from '../Button';
 
-const Cards = ({imgSrc,name,age,phone,contact,time,date,title ,onClick}) => {
+const Cards = ({imgSrc,name,age,phone,contact,time,date,title ,onClick,datakey}) => {
+   debugger
     
   return (
-    <div className="col">
+    <div className="col" key={datakey}>
     <div className="card" style={{height:200,width:400}}>
       <div className='image' style={{position:'relative'}}>
      {imgSrc  && <img src={imgSrc} className="card-img-top" alt="" style={{width:60,height:60,borderRadius:'50%',position:'absolute',top:10,left:10}}/>}

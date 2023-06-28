@@ -17,9 +17,10 @@ function Appointment(){
         <div className="row row-cols-1 row-cols-md-3 g-4">
       {
         profile.map((curElement,index)=>{
+          debugger
           return(
             <>
-          <Cards
+          <Cards datakey={index+1}
           imgSrc={curElement.imgsrc}
           name={curElement.name}
           age={curElement.age}

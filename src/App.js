@@ -45,43 +45,45 @@ const[inputData,setInputData]=useState({
     <>
     <div className='container' style={{marginTop:90}}>
     <div className='heading' >
-      <h1 style={{textAlign:'center',marginBottom:40,position:'relative'}}>Appointmet Card UI 
-<button type="button" className="btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{color:'blue',marginLeft:15,backgroundColor:'white',height:60,width:60,textAlign:'center',border:0,borderRadius:0}}>
+      <h1 style={{textAlign:'center',marginBottom:40,position:'relative'}}>Appointment Card UI 
+<button type="button" className="btn  text-center" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{color:'white',marginLeft:15,backgroundColor:'blue',height:60,width:60,textAlign:'center',border:0,borderRadius:0}}>
 <PlusCircleOutlined style={{top:20,fontSize:40 }}  />
 </button>
 <div  className="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel" style={{fontSize:30}}>Fill Data</h5>
+        <h5 className="modal-title" id="exampleModalLabel" style={{fontSize:30}}>Appointment Card Details</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body" style={{fontSize:20,textAlign:'start'}}>
         <form onSubmit={submit}>
-        <label htmlFor='file'>File:</label>
-        <input type='file' name='pic'  onChange={handleChange} required></input><br/><br/>
-          <label htmlFor='name'>Name:</label>
+          <label htmlFor='name' className="me-3">Name:</label>
           <input type='text' name='name' value={inputData.name} onChange={handleChange} placeholder='name' required></input><br/><br/>
-          <label htmlFor='age'>Age:</label>
+          <label htmlFor='age' className="me-3">Age:</label>
           <input type='text' placeholder='age' name='age' value={inputData.age} onChange={handleChange} required></input><br/><br/>
-          <label htmlFor='gender'>Gender:</label>
-          <label htmlFor='male' >Male</label>
+          <label htmlFor='gender' className="me-3">Gender:</label>
           <input type='radio' value='male' name='gender'  onChange={handleChange} ></input>
-          <label htmlFor='female'>Female</label>
-          <input type='radio' value='female' name='gender' onChange={handleChange} ></input><br/><br/>
-          <label htmlFor='phone'>Phone:</label>
+          <label htmlFor='male' >Male</label>
+          <input type='radio' value='female' name='gender' onChange={handleChange} className="ms-2"  ></input>
+          <label htmlFor='female'  >Female</label><br/><br/>
+          <label htmlFor='phone' className="me-3">Phone:</label>
           <input type='phone' placeholder='+9' name='phone' value={inputData.phone} onChange={handleChange}  pattern="[9][0-9]{9}" minLength={10} maxLength={10}  required></input><br/><br/>
-          <label htmlFor='time'>Time:</label>
-          <input type='time' name='time' value={inputData.time} onChange={handleChange} required></input><br/><br/>
-          <label htmlFor='date'>Date:</label>
+          <label htmlFor='file' className="me-3">File:</label>
+           <input type='file' name='pic'  onChange={handleChange} required></input><br/><br/>
+          <label htmlFor='time' className="me-2">Time:</label>
+          <input type='time' name='time' value={inputData.time} onChange={handleChange} className="me-3" required></input>
+          <label htmlFor='date' className="me-2">Date:</label>
           <input type='date' name='date' value={inputData.date} onChange={handleChange} required></input><br/><br/>
-          <Button text='Add Data' type='submit' style={{backgroundColor:'blue',color:'white',margin:'auto', borderRadius:10}}>Add Data</Button>
+          <div className="text-end">
+          <Button text='Add Data' type='submit' style={{backgroundColor:'blue',color:'white',margin:'auto', borderRadius:10,height:40,width:100}}>Add Data</Button>
+          </div>
         </form>
       </div>
-      <div className="modal-footer">
+      {/* <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         
-      </div>
+      </div> */}
     </div>
   </div>
 </div></h1>
